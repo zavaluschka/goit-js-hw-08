@@ -12,15 +12,17 @@ function onInput(event) {
     console.log("data on input"+data)
 }
 form.addEventListener('submit', onSubmit);
-function onSubmit() {
+function onSubmit(event) {
+    event.preventDefault()
+    console.log(`email: ${email.value} massage: '${textarea.value}`)
     if (!email.value || !textarea.value) {
     alert ("Будь ласка, заповніть усі поля")
    
     }
     else {
-        console.log(`email: ${email.value} massage: '${textarea.value}`)
-    //    localStorage.removeItem('feedback-form-state');
-        // reset(form);
+        form.reset();
+        localStorage.removeItem('feedback-form-state');
+
       
     }
     
@@ -34,6 +36,5 @@ function onLoad() {
         textarea.value = dataOn.message? dataOn.message : '' ;
         email.value = dataOn.email
     }
-    //  localStorage.removeItem('feedback-form-state');
-        // reset(form);
+   
 }
